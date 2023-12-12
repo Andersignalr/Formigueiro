@@ -1,0 +1,58 @@
+﻿@page "/login"
+
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<ChatContext> DbFactory
+
+@inject IUserService UserService
+
+<div class="data-container">
+    <h2>Login</h2>
+
+    <div class="input-box">
+        <span class="icon"><ion-icon name="person-circle"></ion-icon></span>
+        <input type="text" @bind="UserName" required>
+        <label>UserName</label>
+    </div>
+
+    <div class="input-box">
+        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+        <input type="password" @bind="Password" required>
+        <label>Password</label>
+    </div>
+    <button class="btn" @onclick="BuscaUsuario">Login</button>
+</div>
+
+
+@code{
+    private string UserName = "";
+
+    private string Password = "";
+
+    private async Task BuscaUsuario()
+    {
+        //toreaizu a senha pode ficar vazia
+
+        if(UserName != "")
+        {
+            using var context = DbFactory.CreateDbContext();
+
+            if(context is not null && context.Users is not null)
+            {
+                var usuarioExistente = await context.Users
+                .Where(u => u.UserName == UserName && u.Password == Password)
+                .FirstOrDefaultAsync();
+
+                if (usuarioExistente != null)
+                {
+                    Console.WriteLine("\n" + usuarioExistente.Name + " existe e está logado!");
+
+                    UserService.SetUser(usuarioExistente);
+                    await UserService.SetUserFromLocalStorageAsync();
+                }
+                else
+                    Console.WriteLine("\n" + "Usuario " + UserName + " não existe no banco de dados");
+            }
+        }
+    }
+}

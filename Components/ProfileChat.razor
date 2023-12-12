@@ -1,0 +1,42 @@
+﻿<div class="profile-area">
+
+
+	<div class="profile-image-area">
+
+		@if (!string.IsNullOrEmpty(Image))
+		{
+			<image_ class="profile-image"
+					style="background-image:url(/images/@Image) !important;"></image_>
+		}
+		else
+		{
+			<image_ class="profile-image"
+					style="background-image:url(/images/generic.jpg) !important;"></image_>
+		}
+
+	</div>
+
+	<div class="profile-name-area">
+
+		@if (!string.IsNullOrEmpty(Name))
+		{
+			<text_ class="profile-name">@Name</text_>
+		}
+		else
+		{
+			<text_ class="profile-name">Anderson</text_>
+		}
+
+	</div>
+
+
+</div>
+
+@code {
+
+	[Parameter]
+	public string? Name { get; set; }
+
+	[Parameter]
+	public string? Image { get; set; }
+}
