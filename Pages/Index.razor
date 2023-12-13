@@ -45,15 +45,14 @@
 			await InvokeAsync(StateHasChanged);
 		}
 
-		if (context.Messages is not null)
+		if (context.Users is not null)
 		{
-			var users = await context.Users.AsQueryable().ToListAsync();
-
+			users = await context.Users.AsQueryable().ToListAsync();
 		}
 
 
 
-		if (hubConnection is null)
+		@* if (hubConnection is null)
 		{
 			hubConnection = new HubConnectionBuilder()
 			.WithUrl(Navigation.ToAbsoluteUri("/chathub"))
@@ -70,7 +69,7 @@
 			});
 
 			await hubConnection.StartAsync();
-		}
+		} *@
 
 	}
 
@@ -100,7 +99,7 @@
 					context.Messages.Add(new Message
 						{
 							Content = newMessage,
-							Remetent = 1,
+							Remetent = 2,
 							CreatedAt = DateTime.Now
 						});
 

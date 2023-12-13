@@ -1,5 +1,4 @@
-﻿
-@inject IUserService UserService
+﻿@inject IUserService UserService
 
 
 <div class="chat-area">
@@ -7,11 +6,9 @@
 
 		@for (int i = 0; i < messages.Count(); i++)
 		{
-			if(int.Parse(_lastRemetentId) != messages[i].Remetent)
-			{
+			if (i == 0){
 				<mensagem_ class="first">
-					<image_ class="message-image"
-							style="background: url(../images/image) no-repeat;">
+					<image_ class="message-image" style="background-image: url(../images/@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Image);">
 					</image_>
 					<content_ class="message-content"> @messages[i].Content </content_>
 					@if (i == messages.Count() - 1)
@@ -19,7 +16,18 @@
 						<time_ class="message-time">08:45</time_>
 					}
 				</mensagem_>
-				@if(teste(_lastRemetentId)){}
+			}
+			else if (messages[i].Remetent != messages[i - 1].Remetent)
+			{
+				<mensagem_ class="middle-first">
+					<image_ class="message-image" style="background-image: url(../images/@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Image);">
+					</image_>
+					<content_ class="message-content"> @messages[i].Content </content_>
+					@if (i == messages.Count() - 1)
+					{
+						<time_ class="message-time">08:45</time_>
+					}
+				</mensagem_>
 			}
 			else if (i == messages.Count() - 1)
 			{
@@ -34,6 +42,7 @@
 					<content_ class="message-content">@messages[i].Content</content_>
 				</mensagem_>
 			}
+
 		}
 
 		<empty></empty>
@@ -55,26 +64,30 @@
 
 	protected override async Task OnInitializedAsync()
 	{
-		initializeImages();
+
+		@* Console.WriteLine((users.FirstOrDefault(u => u.Id == 1))?.Name ?? "NonFounded"); *@
+		@* Console.WriteLine(users.FirstOrDefault(u => u.Id == messages[0].Remetent).Image); *@
+
+		@* initializeImages(); *@
 	}
 
-	private void initializeImages()
+	@* private void initializeImages()
 	{
 		User? _lastUser = null;
 		User? _currentUser;
 		foreach (var message in messages)
 		{
 			_currentUser = users.FirstOrDefault(u => u.Id == message.Remetent);
-			if(_currentUser != _lastUser)
+			if (_currentUser != _lastUser)
 			{
 				images.Enqueue(_currentUser?.Image ?? "generic.jpg");
 			}
 		}
-	}
+	} *@
 
 	private bool teste(string s)
 	{
-		return true;	
+		return true;
 	}
 
 }

@@ -98,7 +98,7 @@ mensagem_ {
 
 .message-image {
     display: flex;
-    background: url(../images/perfil.jpg) no-repeat;
+    /* background: url(../images/perfil.jpg) no-repeat; */
     background-size: cover;
     border-radius: 100%;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
@@ -136,6 +136,10 @@ mensagem_ {
 .first {
     margin-left: 0;
     margin-top: 40px;
+}
+
+.middle-first{
+    margin-left: 0;
 }
 
 empty {

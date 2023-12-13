@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\Formigueiro.csproj": {}
+    "C:\\Users\\SUP_EM\\Documents\\Projetos\\Dezembro\\Formigueiro\\Formigueiro.csproj": {}
   },
   "projects": {
-    "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\Formigueiro.csproj": {
+    "C:\\Users\\SUP_EM\\Documents\\Projetos\\Dezembro\\Formigueiro\\Formigueiro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\Formigueiro.csproj",
+        "projectUniqueName": "C:\\Users\\SUP_EM\\Documents\\Projetos\\Dezembro\\Formigueiro\\Formigueiro.csproj",
         "projectName": "Formigueiro",
-        "projectPath": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\Formigueiro.csproj",
-        "packagesPath": "C:\\Users\\Antss\\.nuget\\packages\\",
-        "outputPath": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\obj\\",
+        "projectPath": "C:\\Users\\SUP_EM\\Documents\\Projetos\\Dezembro\\Formigueiro\\Formigueiro.csproj",
+        "packagesPath": "C:\\Users\\SUP_EM\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SUP_EM\\Documents\\Projetos\\Dezembro\\Formigueiro\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Antss\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SUP_EM\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,6 +64,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
