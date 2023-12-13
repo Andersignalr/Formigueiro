@@ -1,6 +1,18 @@
 ﻿<div class="input-area">
     <div class="input-message">
-        <input type="text" placeholder="Type yout text here..." />
-        <button><ion-icon name="send"></ion-icon></button>
+        <input type="text" placeholder="Type yout text here..." @bind="newMessage" />
+        <button @onclick="SendMessage"><ion-icon name="send"></ion-icon></button>
     </div>
 </div>
+
+@code{
+    [Parameter]
+    public EventCallback<string> OnSendMessage {get;set;}
+
+    private string newMessage = "";
+
+    private async Task SendMessage()
+    {
+        await OnSendMessage.InvokeAsync(newMessage);
+    }
+}

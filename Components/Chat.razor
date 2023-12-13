@@ -1,60 +1,80 @@
-﻿<div class="chat-area">
-    <div class="messages-area" id="chatArea">
-        <mensagem_ class="first">
-            <image_ class="message-image"></image_>
-            <content_ class="message-content">Olá</content_>
-        </mensagem_>
-        <mensagem_>
-            <content_ class="message-content">Como você está?</content_>
-        </mensagem_>
-        <mensagem_>
-            <content_ class="message-content">
-                It is a long established fact that a reader will be distracted by
-                the readable content of a page when looking at its layout.
-            </content_>
-        </mensagem_>
-        <mensagem_>
-            <content_ class="message-content">more-or-less</content_>
-        </mensagem_>
-        <mensagem_>
-            <content_ class="message-content">Como você está?</content_>
-        </mensagem_>
-        <mensagem_>
-            <content_ class="message-content">
-                It is a long established fact that a reader will be distracted by
-                the readable content of a page when looking at its layout.
-            </content_>
-        </mensagem_>
-        <mensagem_>
-            <content_ class="message-content">more-or-less</content_>
-        </mensagem_>
-        <mensagem_ class="last">
-            <content_ class="message-content">
-                It is a long established fact that a reader will be distracted by
-                the readable content of a page when looking at its layout.
-            </content_>
-            <time_ class="message-time">08:45</time_>
-        </mensagem_>
+﻿
+@inject IUserService UserService
 
 
-        <mensagem_ class="first">
-            <image_ class="message-image test"></image_>
-            <content_ class="message-content">
-                It is a long established fact that a reader will be distracted by
-                the readable content of a page when looking at its layout.
-            </content_>
-        </mensagem_>
-        <mensagem_>
-            <content_ class="message-content">Como você está?</content_>
-        </mensagem_>
-        <mensagem_>
-            <content_ class="message-content">
-                It is a long established fact that a reader will be distracted by
-                the readable content of a page when looking at its layout.
-            </content_>
-            <time_ class="message-time">08:47</time_>
-        </mensagem_>
+<div class="chat-area">
+	<div class="messages-area" id="chatArea">
 
-        <empty></empty>
-    </div>
+		@for (int i = 0; i < messages.Count(); i++)
+		{
+			if(int.Parse(_lastRemetentId) != messages[i].Remetent)
+			{
+				<mensagem_ class="first">
+					<image_ class="message-image"
+							style="background: url(../images/image) no-repeat;">
+					</image_>
+					<content_ class="message-content"> @messages[i].Content </content_>
+					@if (i == messages.Count() - 1)
+					{
+						<time_ class="message-time">08:45</time_>
+					}
+				</mensagem_>
+				@if(teste(_lastRemetentId)){}
+			}
+			else if (i == messages.Count() - 1)
+			{
+				<mensagem_>
+					<content_ class="message-content"> @messages[i].Content </content_>
+					<time_ class="message-time">08:47</time_>
+				</mensagem_>
+			}
+			else
+			{
+				<mensagem_>
+					<content_ class="message-content">@messages[i].Content</content_>
+				</mensagem_>
+			}
+		}
+
+		<empty></empty>
+	</div>
 </div>
+
+
+@code {
+
+	[Parameter]
+	public List<Message> messages { get; set; }
+
+	[Parameter]
+	public List<User> users { get; set; }
+
+	public Queue<string> images { get; set; }
+
+	public string _lastRemetentId = "";
+
+	protected override async Task OnInitializedAsync()
+	{
+		initializeImages();
+	}
+
+	private void initializeImages()
+	{
+		User? _lastUser = null;
+		User? _currentUser;
+		foreach (var message in messages)
+		{
+			_currentUser = users.FirstOrDefault(u => u.Id == message.Remetent);
+			if(_currentUser != _lastUser)
+			{
+				images.Enqueue(_currentUser?.Image ?? "generic.jpg");
+			}
+		}
+	}
+
+	private bool teste(string s)
+	{
+		return true;	
+	}
+
+}

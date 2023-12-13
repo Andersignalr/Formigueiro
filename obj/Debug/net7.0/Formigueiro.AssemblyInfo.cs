@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Formigueiro")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1241192f494f64896edf0aa9b28dbe477848092b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Formigueiro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Formigueiro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

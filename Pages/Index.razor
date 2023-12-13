@@ -1,12 +1,136 @@
 ﻿@page "/"
 
 
+@using Microsoft.EntityFrameworkCore
+
+@using Microsoft.AspNetCore.SignalR.Client
+
+@inject IDbContextFactory<ChatContext> DbFactory
+
+@inject IUserService UserService
+
+@inject NavigationManager Navigation
+
 <container_>
-	<ProfileChat Name = "Gabrieru" Image="generic.jpg"/>
-	<Chat/>
-	<InputMessage/>
+	<ProfileChat Name=@_user?.Name Image=@_user?.Image />
+	<Chat messages=messages users=users />
+	<InputMessage OnSendMessage="SendMessage" />
 </container_>
 
-@code{
+@code {
 	User? _user;
+
+	List<User> users = new();
+
+	List<Message> messages = new();
+
+	private HubConnection hubConnection;
+
+	protected override async Task OnInitializedAsync()
+	{
+		using var context = DbFactory.CreateDbContext();
+
+		if (context.Messages is not null)
+		{
+			//poderia atribuir direto?
+
+			var chatMessages = await context.Messages.AsQueryable().ToListAsync();
+
+			foreach (var message in chatMessages)
+			{
+				messages.Add(message);
+
+			}
+
+			await InvokeAsync(StateHasChanged);
+		}
+
+		if (context.Messages is not null)
+		{
+			var users = await context.Users.AsQueryable().ToListAsync();
+
+		}
+
+
+
+		if (hubConnection is null)
+		{
+			hubConnection = new HubConnectionBuilder()
+			.WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+			.Build();
+
+			hubConnection.On<string>("ReceiveMessage", async (message) =>
+			{
+				messages.Add(new Message
+					{
+						Content = message,
+					});
+
+				await InvokeAsync(StateHasChanged);
+			});
+
+			await hubConnection.StartAsync();
+		}
+
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await UserService.GetUserFromLocalStorageAsync();
+			_user = UserService.GetUser();
+			await InvokeAsync(StateHasChanged);
+		}
+	}
+
+
+
+	private async Task SendMessage(string newMessage)
+	{
+		if (_user is not null)
+		{
+
+			if (newMessage is not null && newMessage != "")
+			{
+				using var context = DbFactory.CreateDbContext();
+
+				if (context is not null && context.Messages is not null)
+				{
+					context.Messages.Add(new Message
+						{
+							Content = newMessage,
+							Remetent = 1,
+							CreatedAt = DateTime.Now
+						});
+
+					try
+					{
+						await context.SaveChangesAsync();
+					}
+					catch (Exception ex)
+					{
+						Console.WriteLine(ex);
+					}
+
+					try
+					{
+						await hubConnection.SendAsync("SendMessage", newMessage);
+
+					}
+					catch (Exception ex)
+					{
+						Console.WriteLine($"\n{ex.Message}\n");
+					}
+
+					newMessage = "";
+				}
+				//foque no input de mensagens
+			}
+		}
+		else
+		{
+			Console.WriteLine("Você não está logado");
+		}
+	}
 }

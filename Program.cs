@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+
 builder.Services.AddScoped<IUserService, UserService>();
+
+
+builder.Services.AddSignalR();
+
 
 builder.Services.AddDbContextFactory<ChatContext>(opt =>
 	opt.UseSqlite("Data source=chat.db"));
@@ -31,5 +37,7 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
+app.MapHub<ChatHub>("/chathub");
 
 app.Run();

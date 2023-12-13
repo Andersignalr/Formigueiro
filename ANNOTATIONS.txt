@@ -1,0 +1,39 @@
+@page "/edit/{userId}"
+
+@*
+...
+*@
+
+code{
+
+	private async void UpdateUsuario()
+	{
+		if (user != null)
+		{
+			using var context = DbFactory.CreateDbContext();
+			
+			var existingUser = await context.Users.FindAsync(int.Parse(userId));
+			
+			if (existingUser != null)
+			{
+				existingUser.Name = Name;
+				existingUser.UserName = UserName;
+				existingUser.Password = Password;
+
+				try
+				{
+					await context.SaveChangesAsync();
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex);
+					// Lidar com exceções de atualização, se necessário.
+				}
+			}
+			else
+			{
+				Console.WriteLine("Usuário não encontrado para atualização.");
+			}
+		}
+	}
+}
