@@ -1,31 +1,58 @@
-﻿@inject IUserService UserService
+﻿@using Microsoft.JSInterop
+
+@inject IJSRuntime js
+
+@inject IUserService UserService
 
 
-<div class="chat-area">
+<div class="chat-area" onscroll="chatScrolled()">
 	<div class="messages-area" id="chatArea">
 
 		@for (int i = 0; i < messages.Count(); i++)
 		{
-			if (i == 0){
+			if (i == 0)
+			{
 				<mensagem_ class="first">
-					<image_ class="message-image" style="background-image: url(../images/@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Image);">
-					</image_>
-					<content_ class="message-content"> @messages[i].Content </content_>
+					<image_ class="message-image" style="background-image: url(../images/@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Image);" title="@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Name">	</image_>
+					<content_ class="message-content">
+						<name_>Anderson</name_>
+						@messages[i].Content
+					</content_>
 					@if (i == messages.Count() - 1)
 					{
-						<time_ class="message-time">08:45</time_>
+						<time_ class="message-time">@messages[i].CreatedAt.Value.ToString("HH:mm")</time_>
 					}
 				</mensagem_>
 			}
 			else if (messages[i].Remetent != messages[i - 1].Remetent)
 			{
 				<mensagem_ class="middle-first">
-					<image_ class="message-image" style="background-image: url(../images/@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Image);">
+					<image_ class="message-image" style="background-image: url(../images/@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Image);" title="@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Name">
 					</image_>
-					<content_ class="message-content"> @messages[i].Content </content_>
+					<content_ class="message-content">
+						@if (_user is not null)
+						{
+							@if (users.FirstOrDefault(u => u.Id == messages[i].Remetent).Id == _user.Id)
+							{
+								<name_ class="self">@_user.Name</name_>
+
+							}
+							else
+							{
+								<name_>@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Name</name_>
+
+							}
+
+						}
+						else
+						{
+							<name_>@users.FirstOrDefault(u => u.Id == messages[i].Remetent).Name</name_>
+						}
+						@messages[i].Content
+					</content_>
 					@if (i == messages.Count() - 1)
 					{
-						<time_ class="message-time">08:45</time_>
+						<time_ class="message-time">@messages[i].CreatedAt.Value.ToString("HH:mm")</time_>
 					}
 				</mensagem_>
 			}
@@ -33,7 +60,14 @@
 			{
 				<mensagem_>
 					<content_ class="message-content"> @messages[i].Content </content_>
-					<time_ class="message-time">08:47</time_>
+					<time_ class="message-time">@messages[i].CreatedAt.Value.ToString("HH:mm")</time_>
+				</mensagem_>
+			}
+			else if (messages[i].Remetent != messages[i + 1].Remetent)
+			{
+				<mensagem_>
+					<content_ class="message-content">@messages[i].Content</content_>
+					<time_ class="message-time">@messages[i].CreatedAt.Value.ToString("HH:mm")</time_>
 				</mensagem_>
 			}
 			else
@@ -58,36 +92,6 @@
 	[Parameter]
 	public List<User> users { get; set; }
 
-	public Queue<string> images { get; set; }
-
-	public string _lastRemetentId = "";
-
-	protected override async Task OnInitializedAsync()
-	{
-
-		@* Console.WriteLine((users.FirstOrDefault(u => u.Id == 1))?.Name ?? "NonFounded"); *@
-		@* Console.WriteLine(users.FirstOrDefault(u => u.Id == messages[0].Remetent).Image); *@
-
-		@* initializeImages(); *@
-	}
-
-	@* private void initializeImages()
-	{
-		User? _lastUser = null;
-		User? _currentUser;
-		foreach (var message in messages)
-		{
-			_currentUser = users.FirstOrDefault(u => u.Id == message.Remetent);
-			if (_currentUser != _lastUser)
-			{
-				images.Enqueue(_currentUser?.Image ?? "generic.jpg");
-			}
-		}
-	} *@
-
-	private bool teste(string s)
-	{
-		return true;
-	}
-
+	[Parameter]
+	public User _user { get; set; }
 }

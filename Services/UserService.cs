@@ -49,7 +49,7 @@ public class UserService : IUserService
 
     public async Task ClearUser()
     {
-        await _jsRuntime.InvokeVoidAsync("localstorage.removeItem", "user");
+        await _jsRuntime.InvokeVoidAsync("localStorage.removeItem", "user");
         _user = null;
     }
 }

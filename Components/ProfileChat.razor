@@ -1,33 +1,26 @@
 ﻿<div class="profile-area">
 
 
-	<div class="profile-image-area">
 
-		@if (!string.IsNullOrEmpty(Image))
-		{
+	@if (!string.IsNullOrEmpty(Image))
+	{
+		<div class="profile-image-area">
+
 			<image_ class="profile-image"
 					style="background-image:url(/images/@Image) !important;"></image_>
-		}
-		else
-		{
-			<image_ class="profile-image"
-					style="background-image:url(/images/generic.jpg) !important;"></image_>
-		}
+		</div>
 
-	</div>
+	}
 
-	<div class="profile-name-area">
 
-		@if (!string.IsNullOrEmpty(Name))
-		{
+
+	@if (!string.IsNullOrEmpty(Name))
+	{
+		<div class="profile-name-area">
 			<text_ class="profile-name">@Name</text_>
-		}
-		else
-		{
-			<text_ class="profile-name">Anderson</text_>
-		}
+		</div>
+	}
 
-	</div>
 
 
 </div>

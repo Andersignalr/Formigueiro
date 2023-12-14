@@ -1,6 +1,5 @@
 ﻿@page "/"
 
-
 @using Microsoft.EntityFrameworkCore
 
 @using Microsoft.AspNetCore.SignalR.Client
@@ -11,9 +10,11 @@
 
 @inject NavigationManager Navigation
 
+@inject IJSRuntime js
+
 <container_>
 	<ProfileChat Name=@_user?.Name Image=@_user?.Image />
-	<Chat messages=messages users=users />
+	<Chat messages=messages users=users _user=_user />
 	<InputMessage OnSendMessage="SendMessage" />
 </container_>
 
@@ -32,15 +33,8 @@
 
 		if (context.Messages is not null)
 		{
-			//poderia atribuir direto?
 
-			var chatMessages = await context.Messages.AsQueryable().ToListAsync();
-
-			foreach (var message in chatMessages)
-			{
-				messages.Add(message);
-
-			}
+			messages = await context.Messages.AsQueryable().ToListAsync();
 
 			await InvokeAsync(StateHasChanged);
 		}
@@ -52,33 +46,48 @@
 
 
 
-		@* if (hubConnection is null)
+		if (hubConnection is null)
 		{
 			hubConnection = new HubConnectionBuilder()
 			.WithUrl(Navigation.ToAbsoluteUri("/chathub"))
 			.Build();
 
-			hubConnection.On<string>("ReceiveMessage", async (message) =>
+			hubConnection.On<Message>("ReceiveMessage", async (message) =>
 			{
-				messages.Add(new Message
-					{
-						Content = message,
-					});
+				messages.Add(message);
+
+
 
 				await InvokeAsync(StateHasChanged);
+
 			});
 
 			await hubConnection.StartAsync();
-		} *@
+		}
 
 	}
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
+		await js.InvokeVoidAsync("autoScrollEnd");
+
 		if (firstRender)
 		{
+			await js.InvokeVoidAsync("enableAutoScroll");
+
 			await UserService.GetUserFromLocalStorageAsync();
-			_user = UserService.GetUser();
+			if (UserService.GetUser() is not null)
+			{
+
+				if (users.FirstOrDefault(u => u.Id == UserService.GetUser().Id) is not null)
+				{
+					_user = UserService.GetUser();
+				}
+				else
+				{
+					await UserService.ClearUser();
+				}
+			}
 			await InvokeAsync(StateHasChanged);
 		}
 	}
@@ -96,12 +105,13 @@
 
 				if (context is not null && context.Messages is not null)
 				{
-					context.Messages.Add(new Message
+					var tempMessage = new Message
 						{
 							Content = newMessage,
-							Remetent = 2,
+							Remetent = _user.Id,
 							CreatedAt = DateTime.Now
-						});
+						};
+					context.Messages.Add(tempMessage);
 
 					try
 					{
@@ -114,7 +124,7 @@
 
 					try
 					{
-						await hubConnection.SendAsync("SendMessage", newMessage);
+						await hubConnection.SendAsync("SendMessage", tempMessage);
 
 					}
 					catch (Exception ex)
@@ -124,12 +134,11 @@
 
 					newMessage = "";
 				}
-				//foque no input de mensagens
 			}
 		}
 		else
 		{
-			Console.WriteLine("Você não está logado");
+			await js.InvokeVoidAsync("alert", "você não está logado");
 		}
 	}
 }

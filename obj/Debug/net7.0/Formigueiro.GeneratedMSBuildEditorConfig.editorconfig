@@ -9,55 +9,55 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Formigueiro
 build_property.RootNamespace = Formigueiro
-build_property.ProjectDir = C:\Users\SUP_EM\Documents\Projetos\Dezembro\Formigueiro\
+build_property.ProjectDir = C:\Projetos\2023\Dezembro\Formigueiro\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\SUP_EM\Documents\Projetos\Dezembro\Formigueiro
+build_property.MSBuildProjectDirectory = C:\Projetos\2023\Dezembro\Formigueiro
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/App.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/Components/Chat.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/Components/Chat.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDaGF0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/Components/Header.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/Components/Header.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xIZWFkZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/Components/InputMessage.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/Components/InputMessage.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJbnB1dE1lc3NhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/Components/ProfileChat.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/Components/ProfileChat.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQcm9maWxlQ2hhdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/MainLayout.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/Pages/Index.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/Pages/Login.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/Pages/Register.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/_Imports.razor]
+[C:/Projetos/2023/Dezembro/Formigueiro/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/SUP_EM/Documents/Projetos/Dezembro/Formigueiro/Pages/_Host.cshtml]
+[C:/Projetos/2023/Dezembro/Formigueiro/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

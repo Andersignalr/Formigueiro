@@ -85,13 +85,14 @@ container_ {
 .messages-area {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 mensagem_ {
     position: relative;
     display: flex;
     justify-content: start;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     margin-left: 65px;
     gap: 15px;
 }
@@ -120,7 +121,20 @@ mensagem_ {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
     font-weight: 500;
     align-self: flex-end;
+    overflow: hidden;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
 }
+
+    .message-content name_ {
+        font-weight: 600;
+        color: rgb(0, 0, 150);
+    }
+
+        .message-content name_.self {
+            color: firebrick;
+        }
 
 .message-time {
     position: absolute;
@@ -138,7 +152,8 @@ mensagem_ {
     margin-top: 40px;
 }
 
-.middle-first{
+.middle-first {
+    margin-top: 40px;
     margin-left: 0;
 }
 
