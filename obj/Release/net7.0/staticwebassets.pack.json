@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\wwwroot\\css\\chat.css",
+      "PackagePath": "staticwebassets\\css\\chat.css"
+    },
+    {
+      "Id": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\wwwroot\\css\\layout.css",
+      "PackagePath": "staticwebassets\\css\\layout.css"
+    },
+    {
+      "Id": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\wwwroot\\images\\background.jpg",
+      "PackagePath": "staticwebassets\\images\\background.jpg"
+    },
+    {
+      "Id": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\wwwroot\\images\\generic.jpg",
+      "PackagePath": "staticwebassets\\images\\generic.jpg"
+    },
+    {
+      "Id": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\wwwroot\\images\\perfil.jpg",
+      "PackagePath": "staticwebassets\\images\\perfil.jpg"
+    },
+    {
+      "Id": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\wwwroot\\images\\perfil.png",
+      "PackagePath": "staticwebassets\\images\\perfil.png"
+    },
+    {
+      "Id": "C:\\Projetos\\2023\\Dezembro\\Formigueiro\\wwwroot\\js\\Utilidade.js",
+      "PackagePath": "staticwebassets\\js\\Utilidade.js"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.Formigueiro.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.build.Formigueiro.props",
+      "PackagePath": "build\\Formigueiro.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Formigueiro.props",
+      "PackagePath": "buildMultiTargeting\\Formigueiro.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildTransitive.Formigueiro.props",
+      "PackagePath": "buildTransitive\\Formigueiro.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

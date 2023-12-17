@@ -13,9 +13,19 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddSignalR();
 
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowAnyOrigin", builder =>
+	{
+		builder.AllowAnyOrigin()
+			   .AllowAnyMethod()
+			   .AllowAnyHeader();
+	});
+});
+
 
 builder.Services.AddDbContextFactory<ChatContext>(opt =>
-	opt.UseSqlite("Data source=chat.db"));
+	opt.UseSqlite("Data source=C:\\inetpub\\MeuApp\\chat.db;Mode=ReadWrite;"));
 
 var app = builder.Build();
 
@@ -28,6 +38,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 
