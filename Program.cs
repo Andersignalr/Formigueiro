@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
 
 
 builder.Services.AddDbContextFactory<ChatContext>(opt =>
-	opt.UseSqlite("Data source=C:\\inetpub\\MeuApp\\chat.db;Mode=ReadWrite;"));
+	opt.UseSqlite("Data source=chat.db"));
 
 var app = builder.Build();
 
@@ -35,8 +35,13 @@ await context.Database.EnsureCreatedAsync();
 
 if (!app.Environment.IsDevelopment())
 {
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+	Console.WriteLine("AQUI É O PRODUÇÃO, PARÇA!");
+	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+	app.UseHsts();
+}
+else
+{
+	Console.WriteLine("AQUI É O DESENVOLVIMENTO, PARÇA!");
 }
 
 app.UseCors("AllowSpecificOrigin");
